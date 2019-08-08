@@ -1,0 +1,43 @@
+icon: 'mdi:auto-fix'
+path: auto
+title: Automasjoner
+cards:
+  - columns: 3
+    entities:
+      - entity: automation.alarm_av
+      - entity: automation.alarm_av_lys_pa
+      - entity: automation.alarm_av_lys_pa_stua
+      - entity: automation.alarm_pa
+      - entity: automation.alarm_pa_lys_av
+      - entity: automation.alle_lys_kjellergang_av
+      - entity: automation.alle_lys_kjellergang_pa
+      - entity: automation.alle_lys_kjellerstue_av
+      - entity: automation.alle_lys_kjellerstue_pa
+      - entity: automation.auto_lys_av_stua
+      - entity: automation.auto_lys_pa_stua
+      - entity: automation.autolas_ytterdor
+      - entity: automation.ferielys_av
+      - entity: automation.ferielys_pa
+      - entity: automation.filmmodus
+      - entity: automation.lader_kontrollpanel_kjeller_av
+      - entity: automation.lader_kontrollpanel_kjeller_pa
+      - entity: automation.lader_kontrollpanel_stua_av
+      - entity: automation.lader_kontrollpanel_stua_pa
+      - entity: automation.las_pa
+      - entity: automation.lys_av_kjellergang
+      - entity: automation.lys_av_kjellerstue
+      - entity: automation.lys_av_stua
+      - entity: automation.lys_pa_kjeller
+      - entity: automation.lys_pa_stua
+      - entity: automation.lys_tvbordet_av
+      - entity: automation.lys_tvbordet_pa
+      - entity: automation.nattlys_kjeller
+      - entity: automation.normalmodus
+      - entity: automation.persienne_apen
+      - entity: automation.persienne_film
+      - entity: automation.persienne_lukket
+      - entity: automation.persienne_normal
+      - entity: automation.reaktiver_alarm
+    show_icon: false
+    show_name: true
+    type: glance

@@ -1,0 +1,506 @@
+title: Nest
+icon: mdi:monitor-dashboard
+panel: true
+background: "right/auto linear-gradient(23deg, rgba(211,211,211,1) 0%, rgba(223,223,223,1) 34%, rgba(255,255,255,1) 100%)"
+path: nest-dash
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:nest-layout-card
+        layout: horizontal
+        max_width: [300px, 100%]
+        column_num: 2
+        max_columns: 2
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:decluttering-card
+                    template: nest_button
+                    variables:
+                      - entity: binary_sensor.ytterdor
+                      - name: Ytterdør
+                      - show_name: true
+                      - show_state: false
+                      - state:
+                          - value: 'on'
+                            icon: mdi:door-open
+                            color: rgb(255, 0, 0)
+                          - value: 'off'
+                            icon: mdi:door-closed
+                            color: rgb(0, 255, 0)
+                  - type: custom:decluttering-card
+                    template: nest_button
+                    variables:
+                      - entity: alarm_control_panel.nordveien_alarm
+                      - name: Alarm
+                      - show_name: true
+                      - show_state: false
+                      - state:
+                          - value: 'armed_away'
+                            icon: mdi:shield-lock
+                            color: rgb(255, 128, 0)
+                          - value: 'armed_home'
+                            icon: mdi:shield-home
+                            color: rgb(255, 255, 0)
+                          - value: 'disarmed'
+                            icon: mdi:shield-off
+                            color: rgb(0, 0, 0)
+                  - type: custom:decluttering-card
+                    template: nest_button
+                    variables:
+                      - entity: binary_sensor.stuedor
+                      - name: Verandadør
+                      - show_name: true
+                      - show_state: false
+                      - state:
+                          - value: 'on'
+                            icon: mdi:door-open
+                            color: rgb(255, 0, 0)
+                          - value: 'off'
+                            icon: mdi:door-closed
+                            color: rgb(0, 255, 0)
+              - type: entities
+                entities:
+                  - entity: input_select.radio_station
+                  - entity: input_select.chromecast_radio
+                  - entity: script.radiokanal
+                  - entity: input_number.volume_radio
+                style: |
+                  ha-card {
+                    margin-top: 5px;
+                    margin-bottom: 5px;
+                    background-color: rgba(0, 0, 0, 0);
+                    font-family: 'Open Sans', sans-serif;
+                    font-size: 100%;
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                    text-align: center;
+                  }
+              - type: custom:weather-card
+                entity: weather.nordveien_4
+                style: |
+                  ha-card {
+                    background-color: rgba(0, 0, 0, 0);
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                  }
+
+
+          - type: vertical-stack
+            cards: 
+              - type: horizontal-stack
+                cards:
+                  - type: vertical-stack
+                    cards:
+                      - type: "custom:atomic-calendar"
+                        entities:
+                          - entity: calendar.smarthus
+                        dateSize: 120
+                        titleSize: 130
+                        style: |
+                          ha-card {
+                            height: 300px;
+                            font-family: 'Open Sans', sans-serif;
+                            margin-bottom: 2px;
+                            margin-right: 2px;
+                          }
+                      - type: horizontal-stack
+                        cards:
+                          - type: vertical-stack
+                            cards:
+                              - type: horizontal-stack
+                                cards:
+                                - type: custom:mini-graph-card
+                                  entities:
+                                    - sensor.stua_temperatur
+                                  height: 35
+                                  name: Stua 
+                                  show:
+                                    fill: false
+                                    icon: true
+                                  color_thresholds:
+                                    - value: 0
+                                      color: "#CCE5FF"
+                                    - value: 10
+                                      color: "#66B2FF"
+                                    - value: 18
+                                      color: "#0080FF"
+                                    - value: 20
+                                      color: "#87c087"
+                                    - value: 21
+                                      color: "#389638"
+                                    - value: 24
+                                      color: "#FF9932"
+                                    - value: 25
+                                      color: "#FF8000"
+                                    - value: 26
+                                      color: "#ff0000"
+                                  style: |
+                                    ha-card {
+                                      margin-right: 2px;
+                                      margin-bottom: 2px;
+                                    }
+                                - type: custom:mini-graph-card
+                                  entities:
+                                    - sensor.kjeller_temperatur
+                                  show:
+                                    icon: true
+                                    fill: false
+                                  height: 35
+                                  name: Kjeller
+                                  color_thresholds:
+                                    - value: 0
+                                      color: "#CCE5FF"
+                                    - value: 10
+                                      color: "#66B2FF"
+                                    - value: 15
+                                      color: "#0080FF"
+                                    - value: 18
+                                      color: "#87c087"
+                                    - value: 21
+                                      color: "#389638"
+                                    - value: 24
+                                      color: "#FF9932"
+                                    - value: 25
+                                      color: "#FF8000"
+                                    - value: 26
+                                      color: "#ff0000"
+                                  style: |
+                                    ha-card {
+                                      margin-right: 2px;
+                                      margin-bottom: 2px;
+                                    }
+                                - type: custom:mini-graph-card
+                                  entities:
+                                    - sensor.dht_sensor_temperature
+                                  height: 35
+                                  name: Sikkringsskap
+                                  show:
+                                    fill: false
+                                    icon: true
+                                  color_thresholds:
+                                    - value: 0
+                                      color: "#CCE5FF"
+                                    - value: 10
+                                      color: "#66B2FF"
+                                    - value: 18
+                                      color: "#0080FF"
+                                    - value: 20
+                                      color: "#87c087"
+                                    - value: 21
+                                      color: "#389638"
+                                    - value: 24
+                                      color: "#FF9932"
+                                    - value: 25
+                                      color: "#FF8000"
+                                    - value: 26
+                                      color: "#ff0000"
+                                  style: |
+                                    ha-card {
+                                      margin-right: 2px;
+                                      margin-bottom: 2px;
+                                    }
+                              - type: horizontal-stack
+                                cards:
+                                  - type: custom:mini-graph-card
+                                    show:
+                                      fill: false
+                                      icon: true
+                                    height: 35
+                                    entities:
+                                      - sensor.kontrollpanel_kjeller
+                                    style: |
+                                      ha-card {
+                                        margin-right: 2px;
+                                        margin-bottom: 2px;
+                                      }
+                                  - type: custom:mini-graph-card
+                                    show:
+                                      fill: false
+                                      icon: true
+                                    height: 35
+                                    entities:
+                                      - sensor.kontrollpanel_stua
+                                    style: |
+                                      ha-card {
+                                        margin-right: 2px;
+                                        margin-bottom: 2px;
+                                      }
+                                  - type: custom:mini-graph-card
+                                    show:
+                                      fill: false
+                                      icon: true
+                                    height: 35
+                                    entities:
+                                      - sensor.lysbryter_stua
+                                    style: |
+                                      ha-card {
+                                        margin-right: 2px;
+                                        margin-bottom: 2px;
+                                      }
+                  - type: vertical-stack
+                    cards:
+                      - type: custom:vertical-stack-in-card
+                        cards:
+                          - type: horizontal-stack
+                            cards:
+                              - type: custom:decluttering-card
+                                template: daglig
+                                variables:
+                                  - entity: sensor.daglig
+                                  - name: Daglig lys
+                                  - show_name: true
+                                  - state:
+                                      - value: 'on'
+                                        icon: mdi:lightbulb-on-outline
+                                        color: rgb(152,251,152)
+                                      - value: 'off'
+                                        icon: mdi:lightbulb-outline
+                                        color: "#BAC0C6"
+                              - type: custom:decluttering-card
+                                template: film
+                                variables:
+                                  - entity: sensor.film
+                                  - name: Filmmodus
+                                  - show_name: true
+                                  - state:
+                                      - value: 'on'
+                                        icon: mdi:lightbulb-on-outline
+                                        color: rgb(152,251,152)
+                                      - value: 'off'
+                                        icon: mdi:lightbulb-outline
+                                        color: "#BAC0C6"
+                              - type: custom:decluttering-card
+                                template: vasking
+                                variables:
+                                  - entity: sensor.vasking
+                                  - name: Vaskelys
+                                  - show_name: true
+                                  - state:
+                                      - value: 'on'
+                                        icon: mdi:lightbulb-on-outline
+                                        color: rgb(152,251,152)
+                                      - value: 'off'
+                                        icon: mdi:lightbulb-outline
+                                        color: "#BAC0C6"
+                          - type: horizontal-stack
+                            cards:
+                              - type: custom:decluttering-card
+                                template: party
+                                variables:
+                                  - entity: sensor.party
+                                  - name: Partymodus
+                                  - show_name: true
+                                  - state:
+                                      - value: 'on'
+                                        icon: mdi:microphone-variant
+                                        color: rgb(152,251,152)
+                                      - value: 'off'
+                                        icon: mdi:microphone-variant-off
+                                        color: "#BAC0C6"
+                              - type: custom:decluttering-card
+                                template: ferie
+                                variables:
+                                  - entity: sensor.ferie
+                                  - name: Feriemodus
+                                  - show_name: true
+                                  - state:
+                                      - value: 'on'
+                                        icon: mdi:beach
+                                        color: rgb(152,251,152)
+                                      - value: 'off'
+                                        icon: mdi:beach
+                                        color: "#BAC0C6"
+                              - type: custom:decluttering-card
+                                template: barnevakt
+                                variables:
+                                  - entity: sensor.barnevakt
+                                  - name: Barnevaktmodus
+                                  - show_name: true
+                                  - state:
+                                      - value: 'on'
+                                        icon: mdi:alarm-plus
+                                        color: rgb(152,251,152)
+                                      - value: 'off'
+                                        icon: mdi:alarm-off
+                                        color: "#BAC0C6"
+
+
+                      - type: custom:vertical-stack-in-card
+                        cards:
+                          - type: horizontal-stack
+                            cards:
+                              - type: custom:decluttering-card
+                                template: light_button
+                                variables:
+                                  - entity: light.spisebordet
+                                  - name: Spisebordet
+                                  - show_name: true
+                                  - show_state: true
+                                  - state:
+                                      - value: 'Closed'
+                                        icon: mdi:door-closed
+                                        color: rgb(152,251,152)
+                                      - value: 'Open'
+                                        icon: mdi:door-open
+                                        color: rgb(255, 0, 0)
+                              - type: custom:decluttering-card
+                                template: light_button
+                                variables:
+                                  - entity: light.kjokkenet
+                                  - name: Kjøkkenet
+                                  - show_name: true
+                                  - show_state: true
+                                  - state:
+                                      - value: 'Closed'
+                                        icon: mdi:door-closed
+                                        color: rgb(152,251,152)
+                                      - value: 'Open'
+                                        icon: mdi:door-open
+                                        color: rgb(255, 0, 0)
+                              - type: custom:decluttering-card
+                                template: light_button
+                                variables:
+                                  - entity: light.tv_bordet
+                                  - name: TV-bordet
+                                  - show_name: true
+                                  - show_state: true
+                                  - state:
+                                      - value: 'Closed'
+                                        icon: mdi:door-closed
+                                        color: rgb(152,251,152)
+                                      - value: 'Open'
+                                        icon: mdi:door-open
+                                        color: rgb(255, 0, 0)
+                              - type: custom:decluttering-card
+                                template: light_button
+                                variables:
+                                  - entity: light.soffahjorne
+                                  - name: Soffahjørnet
+                                  - show_name: true
+                                  - show_state: true
+                                  - state:
+                                      - value: 'Closed'
+                                        icon: mdi:door-closed
+                                        color: rgb(152,251,152)
+                                      - value: 'Open'
+                                        icon: mdi:door-open
+                                        color: rgb(255, 0, 0)
+                              - type: custom:decluttering-card
+                                template: light_button
+                                variables:
+                                  - entity: light.vegglampe_ved_vilde
+                                  - name: Vegglampe 1
+                                  - show_name: true
+                                  - show_state: true
+                                  - state:
+                                      - value: 'Closed'
+                                        icon: mdi:door-closed
+                                        color: rgb(152,251,152)
+                                      - value: 'Open'
+                                        icon: mdi:door-open
+                                        color: rgb(255, 0, 0)
+
+                          - type: horizontal-stack
+                            cards:
+                              - type: custom:decluttering-card
+                                template: light_button
+                                variables:
+                                  - entity: light.vegglampe_ved_lucas
+                                  - name: Vegglampe 2
+                                  - show_name: true
+                                  - show_state: true
+                                  - state:
+                                      - value: 'Closed'
+                                        icon: mdi:door-closed
+                                        color: rgb(152,251,152)
+                                      - value: 'Open'
+                                        icon: mdi:door-open
+                                        color: rgb(255, 0, 0)
+                              - type: custom:decluttering-card
+                                template: light_button
+                                variables:
+                                  - entity: light.stuevindu_1
+                                  - name: Stuevindu 1
+                                  - show_name: true
+                                  - show_state: true
+                                  - state:
+                                      - value: 'Closed'
+                                        icon: mdi:door-closed
+                                        color: rgb(152,251,152)
+                                      - value: 'Open'
+                                        icon: mdi:door-open
+                                        color: rgb(255, 0, 0)
+                              - type: custom:decluttering-card
+                                template: light_button
+                                variables:
+                                  - entity: light.stuevindu_2
+                                  - name: Stuevindu 2
+                                  - show_name: true
+                                  - show_state: true
+                                  - state:
+                                      - value: 'Closed'
+                                        icon: mdi:door-closed
+                                        color: rgb(152,251,152)
+                                      - value: 'Open'
+                                        icon: mdi:door-open
+                                        color: rgb(255, 0, 0)
+                              - type: custom:decluttering-card
+                                template: light_button
+                                variables:
+                                  - entity: light.tradfri_bulb_3
+                                  - name: Taklys Kjellerstue
+                                  - show_name: true
+                                  - show_state: true
+                                  - state:
+                                      - value: 'Closed'
+                                        icon: mdi:door-closed
+                                        color: rgb(152,251,152)
+                                      - value: 'Open'
+                                        icon: mdi:door-open
+                                        color: rgb(255, 0, 0)
+                              - type: custom:decluttering-card
+                                template: light_button
+                                variables:
+                                  - entity: light.tradfri_bulb_7
+                                  - name: Taklys Kjellergang
+                                  - show_name: true
+                                  - show_state: true
+                                  - state:
+                                      - value: 'Closed'
+                                        icon: mdi:door-closed
+                                        color: rgb(152,251,152)
+                                      - value: 'Open'
+                                        icon: mdi:door-open
+                                        color: rgb(255, 0, 0)
+
+
+                      - type: custom:vertical-stack-in-card
+                        cards:
+                          - type: horizontal-stack
+                            cards:
+                              - type: glance
+                                entities:
+                                  - entity: cover.rullegardin_stue
+                                    name: Rullegardin
+                              - type: glance
+                                entities:
+                                  - entity: media_player.googlehome4507
+                                    name: Google Home
+                              - type: glance
+                                entities:
+                                  - entity: media_player.stua
+                                    name: Chromecast
+                              - type: glance
+                                entities:
+                                  - entity: media_player.playstation_4
+                                    name: Playstation
+
+
+
+
+

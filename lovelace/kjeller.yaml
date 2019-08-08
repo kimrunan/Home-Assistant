@@ -1,0 +1,85 @@
+title: Kjeller
+icon: ''
+panel: false
+path: kjeller
+badges: []
+cards:
+  - cards:
+      - cards:
+          - entity: light.tradfri_bulb_3
+            icon: 'mdi:lightbulb-outline'
+            name: Kjellerstue
+            tap_action:
+              action: call-service
+              service: light.toggle
+              service_data:
+                entity_id: light.tradfri_bulb_3
+            type: entity-button
+          - entity: light.tradfri_bulb_7
+            icon: 'mdi:lightbulb-outline'
+            name: Kjellergang
+            tap_action:
+              action: call-service
+              service: light.toggle
+              service_data:
+                entity_id: light.tradfri_bulb_7
+            type: entity-button
+        type: horizontal-stack
+      - cards:
+          - entity: switch.tv_kjellerstua
+            icon: 'mdi:power'
+            name: Kontrollpanel lader
+            tap_action:
+              action: call-service
+              service: switch.toggle
+              service_data:
+                entity_id: switch.tv_kjellerstua
+            type: entity-button
+          - entity: sensor.vaskingkjeller
+            name: Vaskelys Hele Kjelleren
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              service_data:
+                entity_id: script.1552153946499943
+            type: entity-button
+        type: horizontal-stack
+      - cards:
+          - entity: sensor.normalkjellerstue
+            name: Daglig lys Kjellerstue
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              service_data:
+                entity_id: script.15521539777343
+            type: entity-button
+          - entity: sensor.normalkjellergang
+            name: Daglig lys Kjellergang
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              service_data:
+                entity_id: script.15521539288843
+            type: entity-button
+        type: horizontal-stack
+    type: vertical-stack
+  - entity: switch.tradfri_outlet
+    hold_action:
+      action: more-info
+    icon: 'mdi:power'
+    name: Lys ved TV bordet
+    show_icon: true
+    show_name: true
+    tap_action:
+      action: toggle
+    type: entity-button
+  - entity: sensor.kontrollpanel_kjeller
+    max: 100
+    min: 0
+    name: Kontrollpanel
+    severity:
+      green: 80
+      red: 25
+      yellow: 40
+    theme: default
+    type: gauge

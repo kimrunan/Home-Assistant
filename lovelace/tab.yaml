@@ -1,0 +1,243 @@
+icon: 'mdi:tablet'
+panel: false
+path: tab
+title: tabvisning
+badges: []
+cards:
+  - entity: weather.nordveien_4
+    name: Hjem
+    style: |
+      ha-card {
+        background-color: rgba(0, 0, 0, 0);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    type: 'custom:weather-card'
+  - entities:
+      - color: red - calendar.helligdager_i_norge
+        entity: calendar.smarthus
+    style: |
+      ha-card {
+        background-color: rgba(0, 0, 0, 0);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    title: null
+    type: 'custom:atomic-calendar'
+  - cards:
+      - cards:
+          - entity: sensor.vasking
+            name: Vaskelys
+            style: |
+              ha-card {
+                background-color: rgba(0, 0, 0, 0);
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                 box-shadow: none;
+              }
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              service_data:
+                entity_id: script.15521539446999
+            type: entity-button
+          - entity: sensor.daglig
+            name: Daglig lys
+            style: |
+              ha-card {
+                background-color: rgba(0, 0, 0, 0);
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                 box-shadow: none;
+              }        
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              service_data:
+                entity_id: script.15521539430774
+            type: entity-button
+          - entity: sensor.film
+            name: Filmmodus
+            style: |
+              ha-card {
+                background-color: rgba(0, 0, 0, 0);
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                 box-shadow: none;
+              }        
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              service_data:
+                entity_id: script.15522153946555
+            type: entity-button
+        type: horizontal-stack
+      - cards:
+          - entity: sensor.party
+            name: Partymodus
+            style: |
+              ha-card {
+                background-color: rgba(0, 0, 0, 0);
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                 box-shadow: none;
+              }        
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: group.partymode
+            type: entity-button
+          - entity: sensor.barnevakt
+            name: Barnevaktmodus
+            style: |
+              ha-card {
+                background-color: rgba(0, 0, 0, 0);
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                 box-shadow: none;
+              }        
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: group.barnevaktmodus
+            type: entity-button
+          - entity: sensor.ferie
+            name: Feriemodus
+            style: |
+              ha-card {
+                background-color: rgba(0, 0, 0, 0);
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                 box-shadow: none;
+              }        
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: group.feriemodus
+            type: entity-button
+        type: horizontal-stack
+    type: vertical-stack
+  - columns: 2
+    entities:
+      - entity: sensor.dager_til_papiravfall
+        icon: 'mdi:newspaper'
+        name: Papiravfall om
+      - entity: sensor.dager_til_matavfall
+        icon: 'mdi:food-off'
+        name: Matavfall om
+      - entity: sensor.dager_til_restavfall
+        icon: 'mdi:trash-can-outline'
+        name: Restavfall om
+      - entity: sensor.dager_til_plastavfall
+        icon: 'mdi:spray-bottle'
+        name: Plastavfall om
+    style: |
+      ha-card {
+        background-color: rgba(0, 0, 0, 0);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    type: glance
+  - columns: 2
+    entities:
+      - entity: alarm_control_panel.nordveien_alarm
+        name: Alarm
+      - entity: lock.ytterdor
+    style: |
+      ha-card {
+        background-color: rgba(0, 0, 0, 0);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    type: glance
+  - entities:
+      - entity: input_select.radio_station
+      - entity: input_select.chromecast_radio
+      - entity: script.radiokanal
+      - entity: input_number.volume_radio
+    style: |
+      ha-card {
+        background-color: rgba(0, 0, 0, 0);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    type: entities
+  - columns: 3
+    entities:
+      - entity: cover.rullegardin_stue
+        name: Rullegardin
+      - entity: light.kjokkenet
+        name: Lys kjøkkenet
+        tap_action:
+          action: toggle
+      - entity: light.spisebordet
+        name: Lys stua
+        tap_action:
+          action: toggle
+      - entity: light.tradfri_bulb_4
+        name: Nattlys kjeller
+        tap_action:
+          action: toggle
+      - entity: light.tradfri_bulb_10
+        name: Kveldslys kjeller
+        tap_action:
+          action: toggle
+      - entity: light.tradfri_bulb_8
+        name: Daglig lys kjellerstue
+        tap_action:
+          action: toggle
+      - entity: light.tradfri_bulb_3
+        name: Daglig lys kjellergang
+        tap_action:
+          action: toggle
+      - entity: switch.tradfri_outlet
+        icon: 'mdi:lightbulb-outline'
+        name: Lys ved TV kjeller
+        tap_action:
+          action: toggle
+    style: |
+      ha-card {
+        background-color: rgba(0, 0, 0, 0);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    type: glance
+  - entities:
+      - entity: sensor.stua_temperatur
+        name: Stua
+      - entity: sensor.dht_sensor_temperature
+        name: Sikkringsskap
+      - entity: sensor.kjeller_temperatur
+        name: Kjeller
+      - entity: sensor.stua_lysstyrke
+        name: Lysstyrke Stua
+    style: |
+      ha-card {
+        background-color: rgba(0, 0, 0, 0);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    type: glance
+  - entities:
+      - entity: media_player.googlehome4507
+        name: Google Home Mini
+      - entity: media_player.stua
+      - entity: media_player.playstation_4
+    style: |
+      ha-card {
+        background-color: rgba(0, 0, 0, 0);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    type: glance

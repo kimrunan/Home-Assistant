@@ -1,0 +1,144 @@
+icon: 'mdi:home'
+path: home
+title: Hjem
+badges: []
+cards:
+  - cards:
+      - cards:
+          - entity: sensor.vasking
+            name: Vaskelys
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              service_data:
+                entity_id: script.15521539446999
+            type: entity-button
+          - entity: sensor.daglig
+            name: Daglig lys
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              service_data:
+                entity_id: script.15521539430774
+            type: entity-button
+        type: horizontal-stack
+    type: vertical-stack
+  - columns: 3
+    entities:
+      - entity: light.kjokkenet
+        tap_action:
+          action: toggle
+      - entity: light.tv_bordet
+        tap_action:
+          action: toggle
+      - entity: light.spisebordet
+        tap_action:
+          action: toggle
+      - entity: light.soffahjorne
+        tap_action:
+          action: toggle
+      - entity: light.vegglampe_ved_vilde
+        tap_action:
+          action: toggle
+      - entity: light.vegglampe_ved_lucas
+        tap_action:
+          action: toggle
+      - entity: light.stuevindu_1
+        name: Stuevindu 1
+        tap_action:
+          action: toggle
+      - entity: light.stuevindu_2
+        name: Stuevindu 2
+        tap_action:
+          action: toggle
+      - entity: light.tradfri_bulb_3
+        name: Taklys Kjellerstue
+        tap_action:
+          action: toggle
+      - entity: light.tradfri_bulb_7
+        name: Taklys Kjellergang
+        tap_action:
+          action: toggle
+      - entity: switch.lader_kontrollpanel
+        icon: 'mdi:power'
+        name: Stua
+        tap_action:
+          action: toggle
+      - entity: switch.tv_kjellerstua
+        icon: 'mdi:power'
+        name: Kjeller
+        tap_action:
+          action: toggle
+    type: glance
+  - cards:
+      - cards:
+          - entity: sensor.film
+            name: Filmmodus
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              service_data:
+                entity_id: script.15522153946555
+            type: entity-button
+          - entity: sensor.party
+            name: Partymodus
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: group.partymode
+            type: entity-button
+        type: horizontal-stack
+    type: vertical-stack
+  - entities:
+      - entity: alarm_control_panel.nordveien_alarm
+      - entity: lock.ytterdor
+      - entity: sensor.dager_til_matavfall
+        icon: 'mdi:food-off'
+      - entity: sensor.dager_til_restavfall
+        icon: 'mdi:trash-can-outline'
+      - entity: sensor.dager_til_papiravfall
+        icon: 'mdi:newspaper'
+      - entity: sensor.dager_til_plastavfall
+        icon: 'mdi:spray-bottle'
+      - entity: sensor.kontrollpanel_stua
+      - entity: sensor.kontrollpanel_kjeller
+    type: entities
+  - cards:
+      - cards:
+          - entity: sensor.barnevakt
+            name: Barnevaktmodus
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: group.barnevaktmodus
+            type: entity-button
+          - entity: sensor.ferie
+            name: Feriemodus
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: group.feriemodus
+            type: entity-button
+            show_header_toggle: false
+        show_state: true
+        type: horizontal-stack
+    type: vertical-stack
+  - entities:
+      - entity: media_player.stua
+        name: Chromecast Stua
+      - entity: media_player.googlehome4507
+        name: Google Mini
+      - entity: media_player.playstation_4
+      - entity: cover.rullegardin_stue
+        name: Stuevindu
+      - entity: sensor.dht_sensor_temperature
+        name: Sikringsskap Temperatur
+      - entity: sensor.stua_temperatur
+      - entity: sensor.kjeller_temperatur
+      - entity: sensor.stua_lysstyrke
+      - entity: sensor.kjeller_lysstyrke
+    show_header_toggle: false
+    type: entities
