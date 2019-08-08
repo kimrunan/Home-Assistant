@@ -1,0 +1,130 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Nordveien 4
+  latitude: !secret nordveien4_latitude
+  longitude: !secret nordveien4_longitude
+  elevation: 15
+  unit_system: metric
+  time_zone: Arctic/Longyearbyen
+  customize: !include customize.yaml
+
+frontend:
+  themes: !include themes.yaml
+
+config:
+
+lovelace:
+  mode: yaml
+
+# split config
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+sensor: !include sensor.yaml
+
+updater:
+hacs:
+  token: !secret hacs_token
+  
+discovery:
+
+googlehome:
+  devices:
+    - host: 10.0.0.55
+      track_devices: false
+
+google: 
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+  
+recorder: 
+  db_url: !secret db_url
+
+conversation:
+
+mqtt:
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+history:
+  use_include_order: True
+
+system_health:
+
+sun:
+
+tts:
+  - platform: google_translate
+    language: 'no'
+
+cloud:
+
+verisure:
+  username: !secret verisure_username
+  password: !secret verisure_password
+  code_digits: 6
+
+ifttt:
+  key: !secret ifttt_key
+  
+weather:
+  - platform: openweathermap
+    api_key: !secret weather_api_key
+    name: Nordveien 4
+    latitude: !secret nordveien4_latitude
+    longitude: !secret nordveien4_longitude
+  
+min_renovasjon:
+  street_name: "Nordveien"
+  street_code: "500007088"
+  house_no: "4"
+  county_id: "5050"
+  
+cover:
+  - platform: mqtt
+    name: "Rullegardin Stue"
+    qos: 2
+    command_topic: "hjemme/1/set/blind"
+    state_topic: "hjemme/1/status/blind"
+    position_topic: "hjemme/1/set/blind"
+    set_position_topic: "hjemme/1/set/blind"
+    payload_open: "100"
+    payload_close: "0"
+    position_open: 100
+    position_closed: 0
+    state_open: "100"
+    state_closed: "0"
+    retain: true    
+
+input_select:
+  radio_station:
+    name: 'Velg radiokanal:'
+    options:
+      - NRK mP3
+      - Pulseradio Trance
+      - Radio Norge
+      - Radio Rock
+      - Radio 1
+  chromecast_radio:
+    name: 'Velg høyttaler:'
+    options:
+      - Stua
+      - Anlegget
+    initial: Stua
+    icon: mdi:speaker-wireless 
+    
+input_number: 
+  volume_radio:
+    name: Volume
+    icon: mdi:volume-high
+    min: 0
+    max: 1
+    step: 0.05 
+    
+  rullegardin:
+    name: Rullegardin stue
+    icon: mdi:blinds
+    min: 0
+    max: 100
+    step: 1
+   

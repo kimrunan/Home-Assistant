@@ -1,0 +1,247 @@
+'15521539430774':
+  alias: Normalmodus
+  sequence:
+  - data:
+      brightness: '120'
+      entity_id: light.stuevindu_1
+      kelvin: '1900'
+    service: light.turn_on
+  - data:
+      brightness: '120'
+      entity_id: light.stuevindu_2
+      kelvin: '1900'
+    service: light.turn_on
+  - data:
+      brightness: '200'
+      entity_id: light.soffahjorne
+      kelvin: '1900'
+    service: light.turn_on
+  - data:
+      brightness: '200'
+      entity_id: light.vegglampe_ved_lucas
+      kelvin: '1900'
+    service: light.turn_on
+  - data:
+      brightness: '200'
+      entity_id: light.vegglampe_ved_vilde
+      kelvin: '1900'
+    service: light.turn_on
+  - data:
+      brightness: '200'
+      entity_id: light.tv_bordet
+      kelvin: '1900'
+    service: light.turn_on
+  - data:
+      brightness: '200'
+      entity_id: light.spisebordet
+      kelvin: '1900'
+    service: light.turn_on
+'15522153946555':
+  alias: Filmmodus
+  sequence:
+  - data:
+      brightness: '20'
+      color_temp: '500'
+      entity_id: light.stuevindu_1
+    service: light.turn_on
+  - data:
+      brightness: '20'
+      color_temp: '500'
+      entity_id: light.stuevindu_2
+    service: light.turn_on
+  - data:
+      brightness: '60'
+      entity_id: light.soffahjorne
+      kelvin: '1900'
+    service: light.turn_on
+  - data:
+      brightness: '60'
+      entity_id: light.vegglampe_ved_lucas
+      kelvin: '1900'
+    service: light.turn_on
+  - data:
+      brightness: '60'
+      entity_id: light.vegglampe_ved_vilde
+      kelvin: '1900'
+    service: light.turn_on
+  - data:
+      brightness: '60'
+      entity_id: light.tv_bordet
+      kelvin: '1900'
+    service: light.turn_on
+  - data:
+      brightness: '60'
+      entity_id: light.spisebordet
+      kelvin: '1900'
+    service: light.turn_on
+'15521539446999':
+  alias: Vaskemodus
+  sequence:
+  - data:
+      brightness: '255'
+      entity_id: light.stuevindu_2
+      kelvin: '3000'
+    service: light.turn_on
+  - data:
+      brightness: '255'
+      entity_id: light.stuevindu_2
+      kelvin: '3000'
+    service: light.turn_on
+  - data:
+      brightness: '255'
+      entity_id: light.soffahjorne
+      kelvin: '3000'
+    service: light.turn_on
+  - data:
+      brightness: '255'
+      entity_id: light.vegglampe_ved_lucas
+      kelvin: '3000'
+    service: light.turn_on
+  - data:
+      brightness: '255'
+      entity_id: light.vegglampe_ved_vilde
+      kelvin: '3000'
+    service: light.turn_on
+  - data:
+      brightness: '255'
+      entity_id: light.tv_bordet
+      kelvin: '3000'
+    service: light.turn_on
+  - data:
+      brightness: '255'
+      entity_id: light.spisebordet
+      kelvin: '3000'
+    service: light.turn_on
+'1552153946499943':
+  alias: Vasking-kjeller
+  sequence:
+  - data:
+      brightness: '254'
+      entity_id: light.tradfri_bulb_3
+    service: light.turn_on
+  - data:
+      brightness: '254'
+      entity_id: light.tradfri_bulb_4
+    service: light.turn_on
+  - data:
+      brightness: '254'
+      entity_id: light.tradfri_bulb_5
+    service: light.turn_on
+  - data:
+      brightness: '254'
+      entity_id: light.tradfri_bulb_6
+    service: light.turn_on
+  - data:
+      brightness: '254'
+      entity_id: light.tradfri_bulb_7
+    service: light.turn_on
+  - data:
+      brightness: '254'
+      entity_id: light.tradfri_bulb_8
+    service: light.turn_on
+  - data:
+      brightness: '254'
+      entity_id: light.tradfri_bulb_9
+    service: light.turn_on
+  - data:
+      brightness: '254'
+      entity_id: light.tradfri_bulb_10
+    service: light.turn_on
+'15521539288843':
+  alias: Normal-kjellergang
+  sequence:
+  - data:
+      brightness: '203'
+      entity_id: light.tradfri_bulb_7
+    service: light.turn_on
+  - data:
+      brightness: '203'
+      entity_id: light.tradfri_bulb_8
+    service: light.turn_on
+  - data:
+      brightness: '203'
+      entity_id: light.tradfri_bulb_9
+    service: light.turn_on
+  - data:
+      brightness: '203'
+      entity_id: light.tradfri_bulb_10
+    service: light.turn_on
+'15521539777343':
+  alias: Normal-kjellerstue
+  sequence:
+  - data:
+      brightness: '203'
+      entity_id: light.tradfri_bulb_3
+    service: light.turn_on
+  - data:
+      brightness: '203'
+      entity_id: light.tradfri_bulb_4
+    service: light.turn_on
+  - data:
+      brightness: '203'
+      entity_id: light.tradfri_bulb_5
+    service: light.turn_on
+  - data:
+      brightness: '203'
+      entity_id: light.tradfri_bulb_6
+    service: light.turn_on
+'5646865':
+  alias: Nattlys
+  sequence:
+  - data:
+      brightness: '5'
+      entity_id: light.tradfri_bulb_4
+    service: light.turn_on
+'1558969688283':
+  alias: Kveld/morgen Kjellergang
+  sequence:
+  - data:
+      entity_id: light.tradfri_bulb_7
+    service: light.turn_off
+  - delay: 00:00:01
+  - data:
+      brightness: '5'
+      entity_id: light.tradfri_bulb_10
+    service: light.turn_on
+  - data:
+      entity_id: switch.tradfri_outlet
+    service: switch.turn_off
+'155896968834283':
+  alias: Morgen Kjellerstue
+  sequence:
+  - data:
+      entity_id: switch.tradfri_outlet
+    service: switch.turn_on
+radiokanal:
+  alias: Nettradio Smarthøyttalere
+  sequence:
+  - entity_id: media_player.googlehome4507
+    service: media_player.turn_on
+  - data:
+      entity_id: media_player.googlehome4507
+      volume_level: '0.30'
+    service: media_player.volume_set
+  - data_template:
+      entity_id: '{% if is_state("input_select.chromecast_radio", "Stua") %} media_player.googlehome4507
+        {% elif is_state("input_select.chromecast_radio", "Anlegget") %} media_player.stua
+        {% endif %}
+
+        '
+      media_content_id: '{% if is_state("input_select.radio_station", "NRK mP3") %}
+        http://lyd.nrk.no/nrk_radio_mp3_mp3_h {% elif is_state("input_select.radio_station",
+        "Pulseradio Trance") %} http://icecast.pulsradio.com/pulstranceHD.mp3 {% elif
+        is_state("input_select.radio_station", "Radio Norge") %} http://live-bauerno.sharp-stream.com/radionorge_no_mp3
+        {% elif is_state("input_select.radio_station", "Radio Rock") %} http://live-bauerno.sharp-stream.com/radiorock_no_mp3
+        {% elif is_state("input_select.radio_station", "Radio 1") %} http://live-bauerno.sharp-stream.com/radio1_no_mp3
+        {% endif %}
+
+        '
+      media_content_type: audio/mp4
+    service: media_player.play_media
+'1561576867561':
+  alias: testing av klokke og vær
+  sequence:
+  - data:
+      entity_id: media_player.googlehome4507
+      message: Klokka er nå {{ states.sensor.time.state}} og det er meldt {{states.weather.nordveien_4.state}}
+    service: tts.google_translate_say

@@ -1,0 +1,40 @@
+Barnevaktmodus: 
+  - automation.filmmodus
+  - automation.normalmodus
+  - automation.alarm_pa
+  - automation.alarm_av
+
+Feriemodus:
+  - automation.lys_pa_kjeller
+  - automation.lys_av_kjeller
+  - automation.alarm_pa
+  - automation.alarm_av
+
+Partymode: 
+  - automation.alarm_pa
+  - automation.autolas_ytterdor
+  - automation.las_pa
+  - automation.reaktiver_alarm
+  
+Taklys_kjellerstue:
+  - light.tradfri_bulb_3
+  - light.tradfri_bulb_4
+  - light.tradfri_bulb_5
+  - light.tradfri_bulb_6
+  
+Taklys_kjellergang:
+  - light.tradfri_bulb_7
+  - light.tradfri_bulb_8
+  - light.tradfri_bulb_9
+  - light.tradfri_bulb_10
+
+ 
+alle_lys_kjeller:
+  - group.taklys_kjellergang
+  - group.taklys_kjellerstue
+  
+Nettradio:
+  - input_select.radio_station
+  - input_select.chromecast_radio
+  - script.radiokanal
+  - input_number.volume_radio

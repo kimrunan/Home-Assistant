@@ -1,0 +1,56 @@
+  - name: Film
+    entities:
+      input_select.film:
+        option: Film
+      light.soffahjorne:
+        state: on
+        brightness: 60
+        kelvin: 1900
+      light.spisebordet:
+        state: on
+        brightness: 60
+        kelvin: 1900
+      light.vegglampe_ved_lucas:
+        state: on
+        brightness: 60
+        kelvin: 1900
+      light.vegglampe_ved_vilde:
+        state: on
+        brightness: 60
+        kelvin: 1900
+  - name: Vasking
+    entities:
+        light.soffahjorne:
+            state: on
+            brightness: 254
+            kelvin: 6000
+        light.spisebordet:
+            state: on
+            brightness: 254
+            kelvin: 6000
+        light.vegglampe_ved_lucas:
+            state: on
+            brightness: 254
+            kelvin: 6000
+        light.vegglampe_ved_vilde:
+            state: on
+            brightness: 254
+            kelvin: 6000
+  - name: Normal
+    entities:
+        light.soffahjorne:
+            state: on
+            brightness: 204
+            kelvin: 1900
+        light.spisebordet:
+            state: on
+            brightness: 204
+            kelvin: 1900
+        light.vegglampe_ved_lucas:
+            state: on
+            brightness: 204
+            kelvin: 1900
+        light.vegglampe_ved_vilde:
+            state: on
+            brightness: 204
+            kelvin: 1900

@@ -1,0 +1,407 @@
+#mqtt
+  - platform: mqtt
+    name: "Kontrollpanel kjeller"
+    state_topic: "wallpanel/mywallpanel/sensor/battery"
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.value }}"
+    device_class: "battery"    
+
+  - platform: mqtt
+    name: "Kontrollpanel stua"
+    state_topic: "wallpanel/kontrollpanelsensor/battery" 
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.value }}"
+    device_class: "battery"
+# stua
+  - platform: mqtt  
+    state_topic: "multisensor/stua"  
+    name: "Stua Luftfuktighet"  
+    unit_of_measurement: "%"  
+    value_template: '{{ value_json.humidity | round(1) }}'  
+  
+  - platform: mqtt  
+    state_topic: "multisensor/stua"    
+    name: "Stua Lysstyrke"
+    ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
+    unit_of_measurement: "LUX"  
+    value_template: '{{ value_json.ldr }}'  
+  
+  - platform: mqtt  
+    state_topic: "multisensor/stua"    
+    name: "Stua Bevegelse"  
+    value_template: '{{ value_json.motion }}'  
+  
+  - platform: mqtt  
+    state_topic: "multisensor/stua"    
+    name: "Stua Temperatur"  
+    unit_of_measurement: "°C"  
+    value_template: '{{ value_json.temperature | round(1) }}'  
+
+  - platform: mqtt
+    state_topic: "multisensor/stua"  
+    name: "Stua Real Feel"
+    unit_of_measurement: "°C"
+    value_template: '{{ value_json.heatIndex | round(1) }}'
+# kjeller
+  - platform: mqtt  
+    state_topic: "multisensor/kjeller"  
+    name: "Kjeller Luftfuktighet"  
+    unit_of_measurement: "%"  
+    value_template: '{{ value_json.humidity | round(1) }}'  
+  
+  - platform: mqtt  
+    state_topic: "multisensor/kjeller"    
+    name: "Kjeller Lysstyrke"
+    ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
+    unit_of_measurement: "LUX"  
+    value_template: '{{ value_json.ldr }}'  
+  
+  - platform: mqtt  
+    state_topic: "multisensor/kjeller"    
+    name: "Kjeller Bevegelse"  
+    value_template: '{{ value_json.motion }}'  
+  
+  - platform: mqtt  
+    state_topic: "multisensor/kjeller"    
+    name: "Kjeller Temperatur"  
+    unit_of_measurement: "°C"  
+    value_template: '{{ value_json.temperature | round(1) }}'  
+
+  - platform: mqtt
+    state_topic: "multisensor/kjeller"  
+    name: "Kjeller Real Feel"
+    unit_of_measurement: "°C"
+    value_template: '{{ value_json.heatIndex | round(1) }}'
+# dato og klokkeslett
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+
+# Alarm og lås
+  - platform: template
+    sensors:
+      alarm:
+        friendly_name: "Alarm status"
+        value_template: >-
+          {% if is_state('alarm_control_panel.nordveien_alarm', 'disarmed') %}
+            off
+          {% else %}
+            on
+          {% endif %}
+
+  - platform: template
+    sensors:
+      ytterdor:
+        friendly_name: "Ytterdør"
+        value_template: >-
+          {% if is_state('lock.ytterdor', 'locked') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+
+# Min renovasjon
+  - platform: min_renovasjon
+    fraction_id:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 7
+
+  - platform: dht
+    sensor: DHT11
+    pin: 27
+    monitored_conditions:
+      - temperature
+      - humidity
+
+#dager til avfall
+  - platform: template
+    sensors:
+      dager_til_plastavfall:
+        friendly_name: Plastavfall hentes om
+        value_template: '{{ (( as_timestamp(strptime(states.sensor.plast.state, "%d/%m/%Y")) - as_timestamp(strptime(states.sensor.date.state, "%Y-%m-%d") ))/ (3600*24)) | round() }}'
+        unit_of_measurement: dager
+       
+  - platform: template
+    sensors:
+      dager_til_restavfall:
+        friendly_name: Restavfall hentes om
+        value_template: '{{ (( as_timestamp(strptime(states.sensor.restavfall.state, "%d/%m/%Y")) - as_timestamp(strptime(states.sensor.date.state, "%Y-%m-%d") ))/ (3600*24)) | round() }}'
+        unit_of_measurement: dager
+       
+  - platform: template
+    sensors:
+      dager_til_matavfall:
+        friendly_name: Matavfall hentes om
+        value_template: '{{ (( as_timestamp(strptime(states.sensor.matavfall.state, "%d/%m/%Y")) - as_timestamp(strptime(states.sensor.date.state, "%Y-%m-%d") ))/ (3600*24)) | round() }}'
+        unit_of_measurement: dager
+
+  - platform: template
+    sensors:
+      dager_til_papiravfall:
+        friendly_name: Papiravfall hentes om
+        value_template: '{{ (( as_timestamp(strptime(states.sensor.papir_fiber.state, "%d/%m/%Y")) - as_timestamp(strptime(states.sensor.date.state, "%Y-%m-%d") ))/ (3600*24)) | round() }}'
+        unit_of_measurement: dager
+        
+# dag og natt
+  - platform: template
+    sensors:
+      dag_natt:
+        friendly_name: "Dag/Natt"
+        value_template: >-
+          {% if is_state('sun.sun', 'above_horizon') %}
+            Dag
+          {% else %}
+            Natt
+          {% endif %}
+        icon_template: >-
+          {% if is_state('sun.sun', 'above_horizon') %}
+            mdi:weather-sunny
+          {% else %}
+            mdi:weather-night
+          {% endif %}   
+          
+# scene sensor
+  - platform: template
+    sensors:
+      film:
+        friendly_name: "Film"
+        value_template: >-
+          {% if is_state("light.spisebordet", "off") %} off
+          {% elif state_attr("light.spisebordet", "brightness") == 60 %} on 
+          {% else %} off 
+          {% endif %}
+        icon_template: >-
+          {% set on = is_state("sensor.film","on") %}
+          {% set off = is_state("sensor.film","off") %}
+          {% if on %}
+            mdi:lightbulb-on-outline
+          {% else %}
+            mdi:lightbulb-outline
+          {% endif %}
+          
+  - platform: template
+    sensors:
+      daglig:
+        friendly_name: "Daglig"
+        value_template: >-
+          {% if is_state("light.spisebordet", "off") %} off
+          {% elif state_attr("light.spisebordet", "brightness") == 200 %} on 
+          {% else %} off 
+          {% endif %} 
+        icon_template: >-
+          {% set on = is_state("sensor.daglig","on") %}
+          {% set off = is_state("sensor.daglig","off") %}
+          {% if on %}
+            mdi:lightbulb-on-outline
+          {% else %}
+            mdi:lightbulb-outline
+          {% endif %}  
+  - platform: template
+    sensors:
+      vasking:
+        friendly_name: "Vasking"
+        value_template: >-
+          {% if is_state("light.spisebordet", "off") %} off
+          {% elif state_attr("light.spisebordet", "brightness") == 254 %} on 
+          {% else %} off 
+          {% endif %}
+        icon_template: >-
+          {% set on = is_state("sensor.vasking","on") %}
+          {% set off = is_state("sensor.vasking","off") %}
+          {% if on %}
+            mdi:lightbulb-on-outline
+          {% else %}
+            mdi:lightbulb-outline
+          {% endif %}
+  - platform: template
+    sensors:
+      vaskingkjeller:
+        friendly_name: "Vasking"
+        value_template: >-
+          {% if is_state("light.tradfri_bulb_3", "off") %} off
+          {% elif state_attr("light.tradfri_bulb_3", "brightness") == 254 %} on 
+          {% else %} off 
+          {% endif %}
+        icon_template: >-
+          {% set on = is_state("sensor.vaskingkjeller","on") %}
+          {% set off = is_state("sensor.vaskingkjeller","off") %}
+          {% if on %}
+            mdi:lightbulb-on-outline
+          {% else %}
+            mdi:lightbulb-outline
+          {% endif %}
+  - platform: template
+    sensors:
+      nattlys:
+        friendly_name: "Nattlys"
+        value_template: >-
+          {% if is_state("light.tradfri_bulb_3", "off") %} off
+          {% elif state_attr("light.tradfri_bulb_3", "brightness") == 10 %} on 
+          {% else %} off 
+          {% endif %}
+        icon_template: >-
+          {% set on = is_state("sensor.nattlys","on") %}
+          {% set off = is_state("sensor.nattlys","off") %}
+          {% if on %}
+            mdi:lightbulb-on-outline
+          {% else %}
+            mdi:lightbulb-outline
+          {% endif %}          
+  - platform: template
+    sensors:
+      normalkjellergang:
+        friendly_name: "Normal kjellergang"
+        value_template: >-
+          {% if is_state("light.tradfri_bulb_7", "off") %} off
+          {% elif state_attr("light.tradfri_bulb_7", "brightness") == 203 %} on 
+          {% else %} off 
+          {% endif %}
+        icon_template: >-
+          {% set on = is_state("sensor.normalkjellergang","on") %}
+          {% set off = is_state("sensor.normalkjellergang","off") %}
+          {% if on %}
+            mdi:lightbulb-on-outline
+          {% else %}
+            mdi:lightbulb-outline
+          {% endif %}
+  - platform: template
+    sensors:
+      normalkjellerstue:
+        friendly_name: "Normal kjellerstue"
+        value_template: >-
+          {% if is_state("light.tradfri_bulb_3", "off") %} off
+          {% elif state_attr("light.tradfri_bulb_3", "brightness") == 203 %} on 
+          {% else %} off 
+          {% endif %}
+        icon_template: >-
+          {% set on = is_state("sensor.normalkjellerstue","on") %}
+          {% set off = is_state("sensor.normalkjellerstue","off") %}
+          {% if on %}
+            mdi:lightbulb-on-outline
+          {% else %}
+            mdi:lightbulb-outline
+          {% endif %}
+  - platform: template
+    sensors:
+      barnevakt:
+        friendly_name: "Barnevakt"
+        value_template: >-
+          {% if is_state("group.barnevaktmodus", "on") %} off
+          {% else %} on 
+          {% endif %}
+        icon_template: >-
+          {% set on = is_state("sensor.barnevakt","on") %}
+          {% set off = is_state("sensor.barnevakt","off") %}
+          {% if on %}
+            mdi:alarm-plus
+          {% else %}
+            mdi:alarm-off
+          {% endif %}
+
+  - platform: template
+    sensors:
+      ferie:
+        friendly_name: "Ferie"
+        value_template: >-
+          {% if is_state("group.feriemodus", "on") %} off
+          {% else %} on 
+          {% endif %}
+        icon_template: >-
+          {% set on = is_state("sensor.ferie","on") %}
+          {% set off = is_state("sensor.ferie","off") %}
+          {% if on %}
+            mdi:airplane-takeoff
+          {% else %}
+            mdi:airplane-off
+          {% endif %}
+
+  - platform: template
+    sensors:
+      party:
+        friendly_name: "Party"
+        value_template: >-
+          {% if is_state("group.partymode", "on") %} off
+          {% else %} on 
+          {% endif %}
+        icon_template: >-
+          {% set on = is_state("sensor.party","on") %}
+          {% set off = is_state("sensor.party","off") %}
+          {% if on %}
+            mdi:microphone-variant
+          {% else %}
+            mdi:microphone-variant-off
+          {% endif %}
+#Sensor lysbryter stua          
+  - platform: template
+    sensors:
+      lysbryter_stua:
+        friendly_name: Lysbryter stua
+        unit_of_measurement: '%'
+        value_template: '{{ state_attr("sensor.tradfri_remote_control","battery_level") }}'
+        icon_template: >-
+          {% set battery_level = state_attr("sensor.tradfri_remote_control","battery_level")|int('unknown') %}
+          {% set battery_round = (battery_level|int / 10)|int * 10 %}
+          {% if battery_level == 'unknown' %}
+            mdi:battery-unknown
+          {% else %}
+            {% if battery_round >= 100 %}
+              mdi:battery
+            {% elif battery_round > 0 %}
+              mdi:battery-{{ battery_round }}
+            {% else %}
+              mdi:battery-alert
+            {% endif %}
+          {% endif %}          
+#Batteri status kontrollpanel      
+#  - platform: template
+#    sensors:
+#      kontrollpanel_level:
+#        friendly_name: Batteri
+#        unit_of_measurement: "%"
+#        value_template: '{{ state_attr("sensor.kontrollpanel","battery") }}'
+#        icon_template: >-
+#          {% set battery_level = state_attr("sensor.kontrollpanel","battery")|int('unknown') %}
+#          {% set battery_round = (battery_level|int / 10)|int * 10 %}
+#          {% if battery_level == 'unknown' %}
+#            mdi:battery-unknown
+#          {% else %}
+#            {% if battery_round >= 100 %}
+#              mdi:battery
+#            {% elif battery_round > 0 %}
+#              mdi:battery-{{ battery_round }}
+#            {% else %}
+#              mdi:battery-alert
+#            {% endif %}
+#          {% endif %}
+#      kontrollpanel_state:
+#        friendly_name: Status
+#        value_template: >-
+#          {% set battery_level = state_attr("sensor.kontrollpanel","battery")|int('unknown') %}
+#          {% set battery_round = (battery_level|int / 10)|int * 10 %}
+#          {% set charging = is_state("binary_sensor.kontrollpanel_battery_increase","on") %}
+#          {% set discharging = is_state("binary_sensor.kontrollpanel_battery_decrease","on") %}
+#          {% if charging %}
+#            Charging
+#          {% else %}
+#            {% if battery_round >= 100 %}
+#              Full
+#            {% elif battery_round > 0 %}
+#              Unplugged
+#            {% else %}
+#              Low
+#            {% endif %}
+#          {% endif %}
+#        icon_template: >-
+#          {% set battery_level = state_attr("sensor.kontrollpanel","battery")|int('unknown') %}
+#          {% set battery_round = (battery_level|int / 10)|int * 10 %}
+#          {% set charging = is_state("binary_sensor.kontrollpanel_battery_increase","on") %}
+#          {% set discharging = is_state("binary_sensor.kontrollpanel_battery_decrease","on") %}
+#          {% if charging %}
+#            mdi:power-plug
+#          {% else %}
+#            mdi:power-plug-off
+#          {% endif %} 
