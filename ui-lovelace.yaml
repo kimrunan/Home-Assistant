@@ -465,7 +465,7 @@ views:
   - !include lovelace/auto.yaml
   - !include lovelace/kjeller.yaml
   - !include lovelace/tab.yaml
-  - !include lovelace/102_nest_dashboard.yaml
+  - !include lovelace/dashboard.yaml
 
 
 
