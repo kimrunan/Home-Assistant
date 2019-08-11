@@ -2,7 +2,7 @@
 
 Home assistant setup that i use. 
 
-design credits for dashboard view goes to @isabellaalstrom :) 
+design credits for dashboard view goes to <a href="https://github.com/isabellaalstrom">Isabell Aalstrom</a> :) 
 
 Homeview:
 ![Homeview](https://github.com/kimrunan/Home-Assistant/blob/master/home.JPG?raw=true)
